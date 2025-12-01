@@ -39,24 +39,26 @@
         <p>Először válassz egy megyét a lenyíló listából.</p>
     @endif
 
-    <table border="1" cellpadding="5" cellspacing="0">
+    <table style="border:1px solid #000;border-collapse:collapse;width:100%;">
         <thead>
         <tr>
-            <th>ID</th>
-            <th>Név</th>
-            <th>Megye</th>
+            <th style="border:1px solid #000;padding:5px;text-align:left;">ID</th>
+            <th style="border:1px solid #000;padding:5px;text-align:left;">Név</th>
+            <th style="border:1px solid #000;padding:5px;text-align:left;">Megye</th>
+            <th style="border:1px solid #000;padding:5px;text-align:left;">Irányítószámok</th>
         </tr>
         </thead>
         <tbody>
         @forelse($cities as $city)
             <tr>
-                <td>{{ $city->id }}</td>
-                <td>{{ $city->name }}</td>
-                <td>{{ $city->county->name ?? '' }}</td>
+                <td style="border:1px solid #000;padding:5px;">{{ $city->id }}</td>
+                <td style="border:1px solid #000;padding:5px;">{{ $city->name }}</td>
+                <td style="border:1px solid #000;padding:5px;">{{ $city->county->name ?? '' }}</td>
+                <td style="border:1px solid #000;padding:5px;">{{ $city->zipcodes->pluck('zipcode')->implode(', ') ?: '-' }}</td>
             </tr>
         @empty
             <tr>
-                <td colspan="3">Nincs megjeleníthető város.</td>
+                <td colspan="4" style="border:1px solid #000;padding:5px;">Nincs megjeleníthető város.</td>
             </tr>
         @endforelse
         </tbody>
